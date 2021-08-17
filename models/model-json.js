@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const pathToJSON = path.join(__dirname + './../tasks.json');
+const form = require('../controllers/nodemailer');
 
 class ModelJson {
   async getAllTasks() {
@@ -49,7 +50,6 @@ class ModelJson {
       });
     })
   }
-
 
   async editTask(title, text, status, taskId) {
     return new Promise((resolve, reject) => {
@@ -115,6 +115,13 @@ class ModelJson {
 
         resolve(tasks[id]);
       })
+    })
+  }
+
+  async contactForm(input) {
+    return new Promise((resolve, reject) => {
+      form(input);
+      resolve(input);
     })
   }
 
