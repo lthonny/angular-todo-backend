@@ -1,9 +1,15 @@
 const path = require('path');
 const fs = require('fs');
 const pathToJSON = path.join(__dirname + './../tasks.json');
-const form = require('../controllers/nodemailer');
+
 
 class ModelJson {
+  async contactForm(input) {
+    return new Promise((resolve, reject) => {
+      resolve(input);
+    })
+  }
+
   async getAllTasks() {
     return new Promise((resolve, reject) => {
       fs.readFile(pathToJSON, 'utf-8', (err, data) => {
@@ -115,13 +121,6 @@ class ModelJson {
 
         resolve(tasks[id]);
       })
-    })
-  }
-
-  async contactForm(input) {
-    return new Promise((resolve, reject) => {
-      form(input);
-      resolve(input);
     })
   }
 
